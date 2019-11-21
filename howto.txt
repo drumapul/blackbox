@@ -12,6 +12,6 @@ $ sudo passwd rancher
 $ wget https://raw.githubusercontent.com/drumpaul/blackbox_x86/master/clone.sh \
 && chmod +x clone.sh \
 && ./clone.sh \
-&& sudo chmod 777 -R blackbox \
-&& cd blackbox \
+&& sudo chmod 777 -R blackbox_x86 \
+&& cd blackbox_x86 \
 && ./install-rancheros.sh
