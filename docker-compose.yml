@@ -1,12 +1,32 @@
 version: '3'
 services:
-  sambatest:
+  samba:
+    container_name: samba
     image: "dperson/samba"
     container_name: "samba"
     ports:
      - "139:139"
      - "445:445"
     volumes:
-     - "/home/cotlod:/mount"
+     - "/home/mule:/mount"
     restart: "always"
     #    entrypoint: "-s \"data;/mount;yes;no;yes;all;no;comment]\" -p"
+
+  deluge:
+    container_name: deluge
+    image: "cotlod/deluge"
+    build: './deluge'
+    container_name: "deluge"
+    environment:
+      PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      LANG=it_IT.UTF-8
+    volumes:
+      - /home/mule:/data
+      - /data
+    ports:
+      - "53160"
+      - "53160/udp"
+      - "58846"
+      - "8112:8112"
+    restart: "always"
+    entrypoint: /start.sh
